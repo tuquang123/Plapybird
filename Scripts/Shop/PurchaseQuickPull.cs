@@ -24,6 +24,8 @@ namespace Shop
             if (UserInventory.Instance.currentMoney >= price )
             {
                 UserInventory.Instance.SubtractMoney(price);
+                //UserInventory.Instance.UpdateCurrenMoney(price);
+                UserInventory.Instance.UpdateCurrenMoney(-price);
                 Destroy(gameObject);
                 UserInventory.Instance.quickPull = true;
                 Debug.Log("Quick pull");

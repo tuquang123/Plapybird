@@ -25,6 +25,8 @@ namespace Shop
             if (UserInventory.Instance.currentMoney >= price )
             {
                 UserInventory.Instance.SubtractMoney(price);
+                //UserInventory.Instance.UpdateCurrenMoney(price);
+                UserInventory.Instance.UpdateCurrenMoney(-price);
                 UserInventory.Instance.x2ValueBag = true;
                 Debug.Log("X2 value bag mystic");
                 Destroy(gameObject);

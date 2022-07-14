@@ -1,14 +1,16 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
-/// <summary>
-/// when animation fx end , fx will destroy after 1.5f
-/// </summary>
-public class DestroyFx : MonoBehaviour
+
+namespace Utils
 {
-    //call to key a animation
-    public void DestroyFxboom()
+    /// <summary>
+    /// when animation fx end , fx will destroy after 1.5f
+    /// </summary>
+    public class DestroyFx : MonoBehaviour
     {
-        Destroy(gameObject);
+        //call to key a animation
+        public void DestroyFxboom()
+        {
+            Destroy(gameObject);
+        }
     }
 }

@@ -53,6 +53,10 @@ namespace Ingame
                 StartCoroutine(SceneStart());
                 UserInventory.Instance.currentMoney = 0;
                 UserInventory.Instance.ResetUserInventory();
+                UserInventory.Instance.level = 0;
+                UserInventory.Instance.goal = 650;
+                UserInventory.Instance.UpdateCurrenMoney(0);
+                
             }
         }
         /// <summary>

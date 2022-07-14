@@ -1,4 +1,6 @@
 using System;
+using System.Collections.Generic;
+using Ingame;
 using UnityEngine;
 
 namespace UserData
@@ -6,8 +8,13 @@ namespace UserData
     /// <summary>
     /// GameManage time and Check next scene
     /// </summary>
-    public class UserInventory: MonoBehaviour
+    public class UserInventory: Singleton<UserInventory>
     {
+        private void Start()
+        {
+            DontDestroyOnLoad(gameObject);
+        }
+
         [Header("Data")]
         #region DataUser Public
     
@@ -16,6 +23,7 @@ namespace UserData
     
         [Header("Item")]
         
+        [Range(0,10)]
         [SerializeField]
         private int boom; 
         
@@ -28,34 +36,28 @@ namespace UserData
         public int level;
         
         public int goal = 650;
-    
-        #endregion // data
-        public static event Action <int> OnMoneyChangedHandler; 
-    
-        #region Singleton
 
-        public static UserInventory Instance;
-        private void Awake()
+        public bool checkBoom;
+
+        public bool GetBoomState()
         {
-            //Save data
-            level = PlayerPrefs.GetInt("lv",1);
-            if (Instance != null && Instance != this)
-            {
-                Destroy(this);
-            }
-            else
-            {
-                Instance = this;
-                DontDestroyOnLoad(this);
-            }
+            return checkBoom;
         }
 
-        #endregion // singleton
+        /*public bool SetBoom(bool value)
+        {
+            checkBoom = value;
+            // notify
+            
+        }*/
+        
+        #endregion // data
+        public static event Action <int> OnMoneyChangedHandler;
+        public event Action <int> OnBombChangedHandler;
         void Save()
         {
             PlayerPrefs.SetInt("lv", level);
         }
-
         public void SubtractMoney(int money)
         {
             currentMoney -= money;
@@ -70,6 +72,10 @@ namespace UserData
             // check limit
             
             this.boom += boomPar;
+            
+            // validate, notify
+            
+            OnBombChangedHandler?.Invoke(this.boom);
         }
 
         #region Manager boom
@@ -117,5 +123,18 @@ namespace UserData
             // }
         }
 
+        /*public enum CurrencyType
+        {
+            gold, diamond, coin, cash, titan
+        }
+
+        public class CurrencyInfo
+        {
+
+        public CurrencyType type;
+        public int amount;
+        }
+
+        List<CurrencyInfo>*/
     }
 }

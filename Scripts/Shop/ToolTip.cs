@@ -1,14 +1,15 @@
+using Ingame;
 using TMPro;
 using UnityEngine;
 using UnityEngine.Serialization;
 
 namespace Shop
 {
-    public class ToolTip : MonoBehaviour
+    public class ToolTip : Singleton<ToolTip>
     {
         [SerializeField] private TextMeshProUGUI textMeshProUGUI;
         
-        #region SingleTon
+        /*#region SingleTon
         public static ToolTip Instance;
         private void Awake()
         {
@@ -21,7 +22,7 @@ namespace Shop
                 Instance = this;
             }
         }
-        #endregion //singleton
+        #endregion //singleton*/
 
         #region Private Method 
 
@@ -29,7 +30,6 @@ namespace Shop
         {
             Cursor.visible = true;
             gameObject.SetActive( true);
-        
         }
         void Update()
         {

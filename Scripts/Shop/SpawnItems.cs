@@ -25,7 +25,6 @@ namespace Shop
                     //active false
                     button[i].SetActive(false);
                 }
-                Debug.Log(Random.value);
             }
         }
     }

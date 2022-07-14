@@ -13,6 +13,7 @@ public class NextGameButton : MonoBehaviour
     public void UIPlay()
     {
         SceneManager.LoadScene(UserInventory.Instance.level);
+        Debug.Log("Lever = " + UserInventory.Instance.level);
     }
 
     public void UIStartGame()

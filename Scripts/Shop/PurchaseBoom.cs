@@ -9,8 +9,11 @@ namespace Shop
     /// </summary>
     public class PurchaseBoom : MonoBehaviour
     {
+        //button Purchase
         Button _purchaseBt ;
-        [SerializeField] private int price;
+        
+        [SerializeField]
+         private int price;
 
         private void Awake()
         {
@@ -25,6 +28,9 @@ namespace Shop
                 //subtract Boom inventory
                 UserInventory.Instance.SubtractMoney(price);
                 
+                //display Money
+                UserInventory.Instance.UpdateCurrenMoney(-price);
+                
                 // increase bomb inventory
                 UserInventory.Instance.AddBoom(1);
         
@@ -38,14 +44,3 @@ namespace Shop
         }
     }
 }
-
-// class ShopButton
-// {
-//     public Currenctypy current;
-//     public int amount;
-//
-//     void OnClick()
-//     {
-//         UserInventory.INceraseCUrrent(current, amount);
-//     }
-// }
